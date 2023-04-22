@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/mapper/UserMapper.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/IProductDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/views/admin/HomeJFrame.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/utils/MyHashTable.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/mapper/BrandMapper.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/views/LoginJFrame.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/impl/CustomerDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/model/Brand.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/impl/UserDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/model/Customer.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/mapper/CustomerMapper.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/ICustomerDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/impl/ProductDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/main/Main.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/model/Product.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/IUserDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/impl/BrandDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/views/components/ProductInputForm.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/model/AbstractModel.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/IBrandDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/mapper/ProductMapper.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/model/User.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/utils/StringUtil.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/controller/admin/HomeController.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/controller/user/HomeController.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/views/user/HomeJFrame.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/dao/impl/AbstractDAO.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/views/components/ConfirmForm.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/constant/SystemConstant.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/controller/user/LoginController.java</file>
+            <file>file:/home/shinn/NetBeansProjects/LaptopStore/src/com/shinntl/laptopstore/mapper/RowMapper.java</file>
+        </group>
+    </open-files>
+</project-private>
