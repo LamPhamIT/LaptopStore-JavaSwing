@@ -7,6 +7,7 @@ package com.shinntl.laptopstore.dao.impl;
 import com.shinntl.laptopstore.dao.IProductDAO;
 import com.shinntl.laptopstore.mapper.ProductMapper;
 import com.shinntl.laptopstore.model.Product;
+import com.shinntl.laptopstore.sort.Sorter;
 import java.util.List;
 
 /**
@@ -70,5 +71,27 @@ public class ProductDAO extends AbstractDAO<Product> implements IProductDAO {
     public boolean updateAmount(Product product) {
         String sql = "UPDATE Product SET Amount=? WHERE Product_ID=?";
         return update(sql, product.getAmount(), product.getId());
+    }
+
+    @Override
+    public List<Product> findByBrandAndSort(Sorter sorter, Long brandId) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Product ");
+        if (brandId != null) {
+            sql.append("WHERE Brand_ID=" + brandId);
+        }
+        if (sorter.getSortBy() != null) {
+            sql.append(" ORDER BY " + sorter.getSortBy() + " " + sorter.getSortName());
+        }
+        return query(sql.toString(), new ProductMapper());
+    }
+
+    @Override
+    public Product findByBestSelling() {
+       String sql = "SELECT p.*,Count(*) Price FROM Product as p INNER JOIN OrderProduct as o ON p.Product_ID=o.Product_ID GROUP BY p.Product_ID LIMIT 0,1;";
+       List<Product> list = query(sql, new ProductMapper());
+       if(list.isEmpty()) {
+           return null;
+       } 
+       return list.get(0);
     }
 }

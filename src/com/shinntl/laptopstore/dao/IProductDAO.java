@@ -5,6 +5,7 @@
 package com.shinntl.laptopstore.dao;
 
 import com.shinntl.laptopstore.model.Product;
+import com.shinntl.laptopstore.sort.Sorter;
 import java.util.List;
 
 /**
@@ -24,4 +25,8 @@ public interface IProductDAO {
     public Integer count();
     public Product findByID(Long id);
     public boolean updateAmount(Product product);
+    
+    public List<Product> findByBrandAndSort(Sorter sorter, Long brandId);
+    
+    public Product findByBestSelling();
 }

@@ -19,4 +19,5 @@ public interface IOrderDAO {
     public boolean updateByOrderID(Order order);
     public Order findByOrderID(Long orderId);
     public List<Order> findAll();
+    public boolean updateStatus(Long orderId,Long statusId);
 }

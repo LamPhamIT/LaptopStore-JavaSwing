@@ -24,5 +24,12 @@ public class BrandDAO extends AbstractDAO<Brand> implements IBrandDAO{
         }
         return list.get(0);
     }
+
+    @Override
+    public List<Brand> findAll() {
+        String sql = "SELECT * FROM Brand";
+        return query(sql, new BrandMapper());
+    }
+    
     
 }

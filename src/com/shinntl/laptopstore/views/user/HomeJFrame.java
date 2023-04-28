@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -39,7 +40,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     List<JButton> listBuyBtn;
     List<JPanel> listPanel;
     List<JLabel> listImage;
-    
+
     public HomeJFrame() {
         initComponents();
         setVisible(true);
@@ -50,7 +51,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         nextBtn.addActionListener(action);
         cartPanel.setVisible(false);
         homePanel.setVisible(true);
-        
+
         removeCartBtn.addActionListener(action);
         buyCartBtn.addActionListener(action);
         removeOrderBtn.addActionListener(action);
@@ -67,14 +68,16 @@ public class HomeJFrame extends javax.swing.JFrame {
         homeLabel.addMouseListener(mouseListener);
         cartLabel.addMouseListener(mouseListener);
         orderLabel.addMouseListener(mouseListener);
+        filterBtn.addActionListener(action);
+        bestSellerBtn.addActionListener(action);
         designTabel(orderTable);
         designTabel(cartTable);
     }
-    
+
     public void designTabel(JTable jtable) {
         jtable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         jtable.getTableHeader().setOpaque(false);
-        jtable.getTableHeader().setBackground(new Color(0,178,191));
+        jtable.getTableHeader().setBackground(new Color(0, 178, 191));
         jtable.getTableHeader().setForeground(new Color(255, 255, 255));
     }
 
@@ -155,6 +158,15 @@ public class HomeJFrame extends javax.swing.JFrame {
         productNameLabel4 = new javax.swing.JLabel();
         imageProduct4 = new javax.swing.JLabel();
         moreBtn4 = new javax.swing.JButton();
+        sortByFilterCb = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        bestSellerBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        sortNameFilterCb = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        brandFilterCb = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        filterBtn = new javax.swing.JButton();
         purchasedPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
@@ -341,14 +353,14 @@ public class HomeJFrame extends javax.swing.JFrame {
         preBtn.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         preBtn.setForeground(new java.awt.Color(255, 255, 255));
         preBtn.setText("Previous");
-        homePanel.add(preBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 129, 32));
+        homePanel.add(preBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 129, 32));
 
         nextBtn.setBackground(new java.awt.Color(0, 0, 204));
         nextBtn.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         nextBtn.setForeground(new java.awt.Color(255, 255, 255));
         nextBtn.setText("Next");
-        homePanel.add(nextBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 560, 117, 32));
-        homePanel.add(searchTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 6, 434, 39));
+        homePanel.add(nextBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 117, 32));
+        homePanel.add(searchTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 434, 39));
 
         searchBtn.setBackground(new java.awt.Color(0, 51, 255));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -406,7 +418,7 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        homePanel.add(productPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 109, -1, 400));
+        homePanel.add(productPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 400));
 
         productNameLabel2.setText("Name here");
 
@@ -468,7 +480,7 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        homePanel.add(productPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 109, -1, 400));
+        homePanel.add(productPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, 400));
 
         productNameLabel3.setText("Name here");
 
@@ -525,7 +537,7 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        homePanel.add(productPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 109, -1, 400));
+        homePanel.add(productPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, -1, 400));
 
         buyBtn4.setBackground(new java.awt.Color(153, 0, 0));
         buyBtn4.setForeground(new java.awt.Color(255, 255, 255));
@@ -590,7 +602,45 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        homePanel.add(productPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(916, 109, 290, 400));
+        homePanel.add(productPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 160, 290, 400));
+
+        sortByFilterCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose option", "Name", "Price" }));
+        homePanel.add(sortByFilterCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 160, 40));
+
+        jLabel7.setText("Sort by:");
+        homePanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 60, 40));
+
+        bestSellerBtn.setBackground(new java.awt.Color(255, 0, 0));
+        bestSellerBtn.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        bestSellerBtn.setForeground(new java.awt.Color(255, 255, 255));
+        bestSellerBtn.setText("Best seller");
+        bestSellerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bestSellerBtnActionPerformed(evt);
+            }
+        });
+        homePanel.add(bestSellerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 100, 120, 40));
+
+        jLabel8.setText("Sort name:");
+        homePanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
+
+        sortNameFilterCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose option", "Desc", "Asc" }));
+        homePanel.add(sortNameFilterCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 140, 40));
+
+        jLabel9.setText("Brand:");
+        homePanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 50, 30));
+
+        brandFilterCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose option" }));
+        homePanel.add(brandFilterCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 170, 40));
+
+        jLabel13.setText("Filter Box:");
+        homePanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 80, 30));
+
+        filterBtn.setBackground(new java.awt.Color(0, 0, 0));
+        filterBtn.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        filterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        filterBtn.setText("Filter");
+        homePanel.add(filterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 130, 40));
 
         jPanel3.add(homePanel, "card2");
 
@@ -786,6 +836,10 @@ public class HomeJFrame extends javax.swing.JFrame {
         closeMenuBar();
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void bestSellerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestSellerBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bestSellerBtnActionPerformed
+
     // Width: 261.
     public void openMenuBar() {
         new Thread(new Runnable() {
@@ -802,7 +856,7 @@ public class HomeJFrame extends javax.swing.JFrame {
             }
         }).start();
     }
-    
+
     public void closeMenuBar() {
         new Thread(new Runnable() {
             @Override
@@ -818,7 +872,7 @@ public class HomeJFrame extends javax.swing.JFrame {
             }
         }).start();
     }
-    
+
     public void addToList() {
         listPanel = new ArrayList<>();
         listPanel.add(productPanel1);
@@ -869,7 +923,9 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel amountCartLabel;
     private javax.swing.JTextField amountInputTf;
     private javax.swing.JTextField amountOrderTf;
+    private javax.swing.JButton bestSellerBtn;
     private javax.swing.JLabel brandCartLabel;
+    private javax.swing.JComboBox<String> brandFilterCb;
     private javax.swing.JButton buyBtn1;
     private javax.swing.JButton buyBtn2;
     private javax.swing.JButton buyBtn3;
@@ -879,6 +935,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cartPanel;
     private javax.swing.JTable cartTable;
     private javax.swing.JTextArea descripCartTextArea;
+    private javax.swing.JButton filterBtn;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel imageProduct1;
@@ -890,6 +947,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
@@ -898,6 +956,9 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -939,247 +1000,281 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeOrderBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTf;
+    private javax.swing.JComboBox<String> sortByFilterCb;
+    private javax.swing.JComboBox<String> sortNameFilterCb;
     private javax.swing.JButton updateOrderBtn;
     // End of variables declaration//GEN-END:variables
 
     public List<JLabel> getListName() {
         return listName;
     }
-    
+
     public void setListName(List<JLabel> listName) {
         this.listName = listName;
     }
-    
+
     public List<JLabel> getListPrice() {
         return listPrice;
     }
-    
+
     public void setListPrice(List<JLabel> listPrice) {
         this.listPrice = listPrice;
     }
-    
+
     public List<JButton> getListMoreInfor() {
         return listMoreInfor;
     }
-    
+
     public void setListMoreInfor(List<JButton> listMoreInfor) {
         this.listMoreInfor = listMoreInfor;
     }
-    
+
     public List<JButton> getListAddToCartBtn() {
         return listAddToCartBtn;
     }
-    
+
     public void setListAddToCartBtn(List<JButton> listAddToCartBtn) {
         this.listAddToCartBtn = listAddToCartBtn;
     }
-    
+
     public List<JButton> getListBuyBtn() {
         return listBuyBtn;
     }
-    
+
     public void setListBuyBtn(List<JButton> listBuyBtn) {
         this.listBuyBtn = listBuyBtn;
     }
-    
+
     public List<JPanel> getListPanel() {
         return listPanel;
     }
-    
+
     public void setListPanel(List<JPanel> listPanel) {
         this.listPanel = listPanel;
     }
-    
+
     public List<JLabel> getListImage() {
         return listImage;
     }
-    
+
     public void setListImage(List<JLabel> listImage) {
         this.listImage = listImage;
     }
-    
+
     public JTextField getSearchTf() {
         return searchTf;
     }
-    
+
     public void setSearchTf(JTextField searchTf) {
         this.searchTf = searchTf;
     }
-    
+
     public JTable getCartTable() {
         return cartTable;
     }
-    
+
     public void setCartTable(JTable cartTable) {
         this.cartTable = cartTable;
     }
-    
+
     public JPanel getCartPanel() {
         return cartPanel;
     }
-    
+
     public void setCartPanel(JPanel cartPanel) {
         this.cartPanel = cartPanel;
     }
-    
+
     public JPanel getHomePanel() {
         return homePanel;
     }
-    
+
     public void setHomePanel(JPanel homePanel) {
         this.homePanel = homePanel;
     }
-    
+
     public JLabel getAmountCartLabel() {
         return amountCartLabel;
     }
-    
+
     public void setAmountCartLabel(JLabel amountCartLabel) {
         this.amountCartLabel = amountCartLabel;
     }
-    
+
     public JTextField getAmountInputTf() {
         return amountInputTf;
     }
-    
+
     public void setAmountInputTf(JTextField amountInputTf) {
         this.amountInputTf = amountInputTf;
     }
-    
+
     public JLabel getBrandCartLabel() {
         return brandCartLabel;
     }
-    
+
     public void setBrandCartLabel(JLabel brandCartLabel) {
         this.brandCartLabel = brandCartLabel;
     }
-    
+
     public JButton getBuyCartBtn() {
         return buyCartBtn;
     }
-    
+
     public void setBuyCartBtn(JButton buyCartBtn) {
         this.buyCartBtn = buyCartBtn;
     }
-    
+
     public JTextArea getDescripCartTextArea() {
         return descripCartTextArea;
     }
-    
+
     public void setDescripCartTextArea(JTextArea descripCartTextArea) {
         this.descripCartTextArea = descripCartTextArea;
     }
-    
+
     public JLabel getImgCartLabel() {
         return imgCartLabel;
     }
-    
+
     public void setImgCartLabel(JLabel imgCartLabel) {
         this.imgCartLabel = imgCartLabel;
     }
-    
+
     public JLabel getPriceCartLabel() {
         return priceCartLabel;
     }
-    
+
     public void setPriceCartLabel(JLabel priceCartLabel) {
         this.priceCartLabel = priceCartLabel;
     }
-    
+
     public JButton getRemoveCartBtn() {
         return removeCartBtn;
     }
-    
+
     public void setRemoveCartBtn(JButton removeCartBtn) {
         this.removeCartBtn = removeCartBtn;
     }
-    
+
     public JLabel getNameCartLabel() {
         return nameCartLabel;
     }
-    
+
     public void setNameCartLabel(JLabel nameCartLabel) {
         this.nameCartLabel = nameCartLabel;
     }
-    
+
     public JLabel getLogoutLabel() {
         return logoutLabel;
     }
-    
+
     public void setLogoutLabel(JLabel logoutLabel) {
         this.logoutLabel = logoutLabel;
     }
-    
+
     public JLabel getCartLabel() {
         return cartLabel;
     }
-    
+
     public void setCartLabel(JLabel cartLabel) {
         this.cartLabel = cartLabel;
     }
-    
+
     public JLabel getHomeLabel() {
         return homeLabel;
     }
-    
+
     public void setHomeLabel(JLabel homeLabel) {
         this.homeLabel = homeLabel;
     }
-    
+
     public JPanel getPurchasedPanel() {
         return purchasedPanel;
     }
-    
+
     public void setPurchasedPanel(JPanel purchasedPanel) {
         this.purchasedPanel = purchasedPanel;
     }
-    
+
     public JTextField getAmountOrderTf() {
         return amountOrderTf;
     }
-    
+
     public void setAmountOrderTf(JTextField amountOrderTf) {
         this.amountOrderTf = amountOrderTf;
     }
-    
+
     public JButton getPreBtn() {
         return preBtn;
     }
-    
+
     public void setPreBtn(JButton preBtn) {
         this.preBtn = preBtn;
     }
-    
+
     public JLabel getOrderLabel() {
         return orderLabel;
     }
-    
+
     public void setOrderLabel(JLabel orderLabel) {
         this.orderLabel = orderLabel;
     }
-    
+
     public JTable getOrderTable() {
         return orderTable;
     }
-    
+
     public void setOrderTable(JTable orderTable) {
         this.orderTable = orderTable;
     }
-    
+
     public JButton getRemoveOrderBtn() {
         return removeOrderBtn;
     }
-    
+
     public void setRemoveOrderBtn(JButton removeOrderBtn) {
         this.removeOrderBtn = removeOrderBtn;
     }
-    
+
     public JButton getUpdateOrderBtn() {
         return updateOrderBtn;
     }
-    
+
     public void setUpdateOrderBtn(JButton updateOrderBtn) {
         this.updateOrderBtn = updateOrderBtn;
     }
-    
+
+    public JButton getBestSellerBtn() {
+        return bestSellerBtn;
+    }
+
+    public void setBestSellerBtn(JButton bestSellerBtn) {
+        this.bestSellerBtn = bestSellerBtn;
+    }
+
+    public JComboBox<String> getBrandFilterCb() {
+        return brandFilterCb;
+    }
+
+    public void setBrandFilterCb(JComboBox<String> brandFilterCb) {
+        this.brandFilterCb = brandFilterCb;
+    }
+
+    public JComboBox<String> getSortByFilterCb() {
+        return sortByFilterCb;
+    }
+
+    public void setSortByFilterCb(JComboBox<String> sortByFilterCb) {
+        this.sortByFilterCb = sortByFilterCb;
+    }
+
+    public JComboBox<String> getSortNameFilterCb() {
+        return sortNameFilterCb;
+    }
+
+    public void setSortNameFilterCb(JComboBox<String> sortNameFilterCb) {
+        this.sortNameFilterCb = sortNameFilterCb;
+    }
+
 }

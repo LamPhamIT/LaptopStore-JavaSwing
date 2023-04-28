@@ -1,18 +1,22 @@
 package com.shinntl.laptopstore.controller.user;
 
 import com.shinntl.laptopstore.constant.SystemConstant;
+import com.shinntl.laptopstore.dao.IBrandDAO;
 import com.shinntl.laptopstore.dao.ICartDAO;
 import com.shinntl.laptopstore.dao.IOrderDAO;
 import com.shinntl.laptopstore.dao.IProductDAO;
+import com.shinntl.laptopstore.dao.impl.BrandDAO;
 import com.shinntl.laptopstore.dao.impl.CartDAO;
 import com.shinntl.laptopstore.dao.impl.OrderDAO;
 import com.shinntl.laptopstore.dao.impl.ProductDAO;
+import com.shinntl.laptopstore.model.Brand;
 import com.shinntl.laptopstore.model.Cart;
 import com.shinntl.laptopstore.model.Customer;
 import com.shinntl.laptopstore.model.Order;
 import com.shinntl.laptopstore.model.Product;
 import com.shinntl.laptopstore.model.Status;
 import com.shinntl.laptopstore.model.User;
+import com.shinntl.laptopstore.sort.Sorter;
 import com.shinntl.laptopstore.utils.HashTableUtil;
 import com.shinntl.laptopstore.views.LoginJFrame;
 import com.shinntl.laptopstore.views.components.ProductForm;
@@ -49,7 +53,7 @@ public class HomeController implements ActionListener, MouseListener {
     private Integer currentPage = 1;
     private Integer maxPage = 1;
     private Integer startItem = 0;
-
+    private IBrandDAO brandDAO;
     private Customer customer = ((Customer) HashTableUtil.newInstance().get(SystemConstant.CUSTOMER_MODEL));
 
     public HomeController(HomeJFrame homeJFrame) {
@@ -58,8 +62,17 @@ public class HomeController implements ActionListener, MouseListener {
         cartDAO = new CartDAO();
         orderDAO = new OrderDAO();
         listProduct = productDAO.findAll();
+        brandDAO = new BrandDAO();
         setMaxPage();
         setProduct();
+        setDataJcomboBox(brandDAO.findAll());
+    }
+
+    public void setDataJcomboBox(List<Brand> list) {
+//        homeJFrame.getBrandFilterCb().removeAllItems();
+        for (Brand brand : list) {
+            homeJFrame.getBrandFilterCb().addItem(brand.getName());
+        }
     }
 
     private void setMaxPage() {
@@ -192,7 +205,7 @@ public class HomeController implements ActionListener, MouseListener {
     private void actionOfBuyInCart() {
         int selectedRow = homeJFrame.getCartTable().getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(homeJFrame, "Choose product to remove");
+            JOptionPane.showMessageDialog(homeJFrame, "Choose product to buy");
             return;
         }
         Integer amount = null;
@@ -308,6 +321,47 @@ public class HomeController implements ActionListener, MouseListener {
 
     }
 
+    private void actionOfFilter() {
+//        System.out.println("Ban vua click");   
+        String sortBy = (String) homeJFrame.getSortByFilterCb().getSelectedItem();
+        String sortName = (String) homeJFrame.getSortNameFilterCb().getSelectedItem();
+//          System.out.println("" + sortBy + " " + sortName);
+        String brandName = (String) homeJFrame.getBrandFilterCb().getSelectedItem();
+
+        if (sortBy.equalsIgnoreCase("Choose option")) {
+            sortBy = null;
+        } else if(sortBy.equalsIgnoreCase("Name")) {
+            sortBy = "Product_Name";
+        }
+        
+        if (sortName.equalsIgnoreCase("Choose option")) {
+            sortName = "Asc";
+        }
+        if (brandName.equalsIgnoreCase("Choose option")) {
+            brandName = null;
+        }
+        Sorter sorter = new Sorter(sortBy, sortName);
+
+        if (brandName != null) {
+            Brand brand = brandDAO.findByName(brandName);
+            listProduct = productDAO.findByBrandAndSort(sorter, brand.getId());
+        } else {
+            listProduct = productDAO.findByBrandAndSort(sorter, null);
+        }
+        resetPanel();
+        setMaxPage();
+        setProduct();
+    }
+
+    private void actionOfBestSeller() {
+        Product product = productDAO.findByBestSelling();
+        listProduct.clear();
+        listProduct.add(product);
+        resetPanel();
+        setMaxPage();
+        setProduct();
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
@@ -348,6 +402,10 @@ public class HomeController implements ActionListener, MouseListener {
             actionOfRemoveOrder();
         } else if (ae.getSource() == homeJFrame.getUpdateOrderBtn()) {
             actionOfUpdateOrder();
+        } else if (command.equalsIgnoreCase("Filter")) {
+            actionOfFilter();
+        } else if(command.equalsIgnoreCase("Best seller")) {
+            actionOfBestSeller();
         }
 
     }

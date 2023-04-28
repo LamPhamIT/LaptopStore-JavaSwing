@@ -37,10 +37,9 @@ public class OrderMapper implements RowMapper<Order> {
             order.setAmount(resultSet.getInt("Amount"));
             order.setProduct(product);
             order.setCustomer(customer);
-            Status status = new Status();
+            Status status = null;
             try {
-                status.setId(resultSet.getLong("Status_ID"));
-                status.setName(resultSet.getString("Status_Name"));
+                status = new StatusMapper().mapRow(resultSet);
             } catch (Exception e) {
             }
             order.setStatus(status);

@@ -62,5 +62,12 @@ public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
         String query = "SELECT * FROM OrderProduct o INNER JOIN Customer AS c ON o.Customer_ID=c.Customer_ID INNER JOIN Product AS p ON p.Product_ID=o.Product_ID INNER JOIN Status AS s ON s.Status_ID=o.Status_ID";
         return query(query, new OrderMapper());
     }
+
+    @Override
+    public boolean updateStatus(Long orderId, Long statusId) {
+        String sql = "UPDATE OrderProduct SET Status_ID=? WHERE Order_ID=?";
+        return update(sql, orderId, statusId);
+    }
+    
     
 }

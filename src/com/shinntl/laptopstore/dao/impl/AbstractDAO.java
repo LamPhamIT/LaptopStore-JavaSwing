@@ -12,13 +12,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
-
+    
     public Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,7 +33,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
         return null;
     }
-
+    
     @Override
     public <T> List<T> query(String query, RowMapper<T> rowMapper, Object... parameters) {
         Connection connection = getConnection();
@@ -65,7 +67,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
         return listResult;
     }
-
+    
     @Override
     public Long insert(String sql, Object... parameters) {
         Connection connection = getConnection();
@@ -100,7 +102,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
         return id;
     }
-
+    
     public void setParameter(PreparedStatement statement, Object... parameters) {
         try {
             for (int i = 0; i < parameters.length; i++) {
@@ -113,14 +115,18 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     statement.setString(i + 1, (String) item);
                 } else if (item instanceof byte[]) {
                     statement.setBytes(i + 1, (byte[]) item);
-
+                    
+                } else if (item instanceof Date) {
+                    Date date = (Date) item;
+                    Timestamp timestamp = new Timestamp(date.getTime());
+                    statement.setTimestamp(i + 1, timestamp);
                 }
             }
         } catch (Exception e) {
             System.out.println("Set parameters fail");
         }
     }
-
+    
     @Override
     public <T> boolean update(String sql, Object... parameters) {
         Connection connection = getConnection();
@@ -130,7 +136,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(sql);
             setParameter(statement, parameters);
-
+            
             boolean check = statement.executeUpdate() > 0;
             connection.commit();
             return check;
@@ -166,10 +172,10 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
         return false;
     }
-
+    
     @Override
     public <T> int count(String sql, Object... parameters) {
-         Connection connection = getConnection();
+        Connection connection = getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         int count = 0;
@@ -201,5 +207,5 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
         return count;
     }
-
+    
 }

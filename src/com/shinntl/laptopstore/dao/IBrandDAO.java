@@ -5,6 +5,7 @@
 package com.shinntl.laptopstore.dao;
 
 import com.shinntl.laptopstore.model.Brand;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import com.shinntl.laptopstore.model.Brand;
  */
 public interface IBrandDAO {
     public Brand findByName(String name);
+    public List<Brand> findAll();
 }
